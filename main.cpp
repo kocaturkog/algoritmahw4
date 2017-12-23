@@ -46,6 +46,8 @@ public:
 	/*This function gets name of the node's person. I created this function
 	because when doing insertion, I need to compare people's names.*/
 	std::string get_person_name() { return person.get_name(); }
+	void increase_number_of_man() { number_of_man++; }
+	void increase_number_of_woman() { number_of_woman++; }
 };
 
 class RB_Tree {
@@ -66,7 +68,7 @@ public:
 	Node *get_root() { return root; }
 	Node *nth_woman(int);
 	Node *nth_man(int);
-	void update_numbers(Node *);
+	void update_numbers(Node *, char);
 };
 
 /*Decleration of the Binary insert function. Find an empty suitable leaf and 
@@ -242,9 +244,20 @@ void RB_Tree::print(Node *node, int a)
 		
 }
 
-void RB_Tree::update_numbers(Node *node)
+void RB_Tree::update_numbers(Node *node, char gender)
 {
-
+	if (node->get_parent() == NULL)
+	{
+		if (gender == 'F')
+			node->increase_number_of_woman();
+		else
+			node->increase_number_of_woman();
+	}
+	if (node->get_person().get_gender() == 'F')
+	{
+		node->increase_number_of_woman;
+		update_numbers(node->get_parent(), 'F');
+	}
 }
 
 int main(int argc ,char* argv[])
